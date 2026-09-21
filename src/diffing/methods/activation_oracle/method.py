@@ -18,6 +18,7 @@ from .verbalizer import (
     sanitize_lora_name,
 )
 from .agent import ActivationOracleAgent
+from .prompt_context import SCHEMA_VERSION, normalize_conditioning
 
 
 def parse_prompts(raw_prompts, prefix: str = "") -> list[tuple[str, dict | str | None]]:
@@ -89,11 +90,22 @@ class ActivationOracleMethod(DiffingMethod):
         verb_eval = OmegaConf.to_container(self.method_cfg.verbalizer_eval, resolve=True)
         for k in self._HASH_EXCLUDED_VERBALIZER_KEYS:
             verb_eval.pop(k, None)
-        return {
+        relevant = {
             "verbalizer_eval": verb_eval,
             "context_prompts": load_prompts_from_file(self.method_cfg.context_prompts_file),
             "verbalizer_prompts": load_prompts_from_file(self.method_cfg.verbalizer_prompts_file),
         }
+        if self.finetuned_model_cfg.activation_scope == "context_content":
+            relevant.update({
+                "context_schema_version": SCHEMA_VERSION,
+                "target": asdict(self.finetuned_model_cfg),
+                "reference": asdict(self.base_model_cfg),
+                "oracle": self._get_verbalizer_lora_path(),
+                "oracle_revision": self.method_cfg.get("oracle_revision"),
+                "verbalizer_prefix": self.method_cfg.prefix,
+                "measurement_identity": self.method_cfg.get("measurement_identity"),
+            })
+        return relevant
 
     def _results_file(self) -> Path:
         return (
@@ -117,6 +129,25 @@ class ActivationOracleMethod(DiffingMethod):
 
     def run(self):
         is_lora = self.finetuned_model_cfg.is_lora
+        context_mode = self.finetuned_model_cfg.activation_scope == "context_content"
+        if self.finetuned_model_cfg.target_kind == "prompted" and not context_mode:
+            raise ValueError("Prompted targets require context_content extraction")
+        context_model = None
+        if context_mode:
+            target = self.finetuned_model_cfg
+            if target.target_kind not in {"prompted", "unprompted"} or is_lora:
+                raise ValueError("Context mode currently requires a frozen prompted/unprompted target")
+            if (target.model_id, target.revision) != (self.base_model_cfg.model_id, self.base_model_cfg.revision):
+                raise ValueError("Prompted target and unprompted reference must use identical pinned weights")
+            target.conditioning = normalize_conditioning(target.conditioning)
+            if (target.target_kind == "prompted") != bool(target.conditioning):
+                raise ValueError("Conditioning must be present only for prompted targets")
+            import re
+            for label, revision in (("weights", target.revision),
+                                    ("tokenizer", target.tokenizer_revision),
+                                    ("oracle", self.method_cfg.get("oracle_revision"))):
+                if not isinstance(revision, str) or not re.fullmatch(r"[0-9a-f]{40}", revision):
+                    raise ValueError(f"Context mode requires a full {label} revision SHA")
 
         # Layers for activation collection and injection
         model_name = self.base_model_cfg.model_id
@@ -129,6 +160,16 @@ class ActivationOracleMethod(DiffingMethod):
             )
             return
 
+        if context_mode:
+            # One frozen checkpoint is reused for target, control, and oracle.
+            context_model = load_model_from_config(
+                self.finetuned_model_cfg,
+                extra_adapter_ids=[(self._get_verbalizer_lora_path(), None,
+                                    self.method_cfg.oracle_revision)])
+            if not context_model.dispatched:
+                context_model.dispatch()
+            context_model.eval()
+
         eval_overrides: dict = {}
         if "verbalizer_eval" in self.method_cfg:
             eval_overrides = OmegaConf.to_container(
@@ -137,9 +178,11 @@ class ActivationOracleMethod(DiffingMethod):
             assert isinstance(
                 eval_overrides, dict
             ), "verbalizer_eval must resolve to a dict"
+        if context_mode:
+            eval_overrides["activation_scope"] = "context_content"
         config = VerbalizerEvalConfig(
             model_name=model_name,
-            num_layers=self.base_model.num_layers,
+            num_layers=context_model.num_layers if context_mode else self.base_model.num_layers,
             **eval_overrides,
         )
 
@@ -164,7 +207,13 @@ class ActivationOracleMethod(DiffingMethod):
         tokenizer.padding_side = "left"  # run_verbalizer assumes left padding (placeholder positions)
         verbalizer_lora_id = self._get_verbalizer_lora_path()
 
-        if is_lora:
+        if context_mode:
+            model = context_model
+            verbalizer_lora_name = sanitize_lora_name(verbalizer_lora_id)
+            target_lora_name = None
+            target_label = self.finetuned_model_cfg.name
+            base_model = None
+        elif is_lora:
             # LoRA path: load the LoRA's true base (via finetuned_model_cfg.base_model_id,
             # which honors `adapter_base_model_id` overrides) plus the target LoRA (auto-
             # included by load_model_from_config since is_lora) and the verbalizer LoRA.
@@ -233,17 +282,26 @@ class ActivationOracleMethod(DiffingMethod):
                 )
                 verbalizer_prompt_infos.append(context_prompt_info)
 
-        results = run_verbalizer(
-            model=model,
-            tokenizer=tokenizer,
-            verbalizer_prompt_infos=verbalizer_prompt_infos,
-            verbalizer_lora_path=verbalizer_lora_name,
-            target_lora_path=target_lora_name,
-            config=config,
-            device=model.device,
-            is_full_finetune=not is_lora,
-            base_model=base_model,
-        )
+        if context_mode:
+            from .context_verbalizer import run_context_verbalizer
+
+            results = run_context_verbalizer(
+                model, tokenizer, verbalizer_prompt_infos, verbalizer_lora_name,
+                config, model.device, conditioning=self.finetuned_model_cfg.conditioning,
+                target_kind=self.finetuned_model_cfg.target_kind,
+                measurement_identity=self.method_cfg.get("measurement_identity"))
+        else:
+            results = run_verbalizer(
+                model=model,
+                tokenizer=tokenizer,
+                verbalizer_prompt_infos=verbalizer_prompt_infos,
+                verbalizer_lora_path=verbalizer_lora_name,
+                target_lora_path=target_lora_name,
+                config=config,
+                device=model.device,
+                is_full_finetune=not is_lora,
+                base_model=base_model,
+            )
 
         # Optionally save to JSON
 
@@ -251,5 +309,7 @@ class ActivationOracleMethod(DiffingMethod):
             "config": asdict(config),
             "results": [asdict(r) for r in results],
         }
+        if context_mode:
+            final_verbalizer_results["provenance"] = self.extra_agent_relevant_cfg()
         with self._results_file().open("w") as f:
             json.dump(final_verbalizer_results, f, indent=2)

@@ -67,7 +67,21 @@ def collect_activations_multiple_layers(
     inputs_BL: dict[str, torch.Tensor],
     min_offset: int | None,
     max_offset: int | None,
-) -> dict[int, torch.Tensor]:
+    context_positions: list[list[int]] | None = None,
+) -> dict[int, torch.Tensor | list[torch.Tensor]]:
+    if context_positions is not None:
+        if min_offset is not None or max_offset is not None:
+            raise ValueError("Context positions cannot be combined with offset slicing")
+        ids = inputs_BL["input_ids"]
+        if len(context_positions) != ids.shape[0]:
+            raise ValueError("One context position map is required per example")
+        for b, positions in enumerate(context_positions):
+            if not positions or positions != sorted(set(positions)):
+                raise ValueError("Context positions must be nonempty, unique, and increasing")
+            if positions[0] < 0 or positions[-1] >= ids.shape[1]:
+                raise ValueError("Context position outside input")
+            if not bool(inputs_BL["attention_mask"][b, positions].all()):
+                raise ValueError("Context position selects padding")
     if min_offset is not None:
         assert (
             max_offset is not None
@@ -88,6 +102,18 @@ def collect_activations_multiple_layers(
 
     def gather_target_act_hook(module, inputs, outputs):
         layer = module_to_layer[module]
+
+        if context_positions is not None:
+            hidden = outputs[0] if isinstance(outputs, tuple) else outputs
+            # Advanced indexing copies only Q vectors; no instruction/padding
+            # vectors are retained in the returned activation collection.
+            activations_BLD_by_layer[layer] = [
+                hidden[b, positions, :].detach()
+                for b, positions in enumerate(context_positions)
+            ]
+            if layer == max_layer:
+                raise EarlyStopException("Early stopping after capturing context activations")
+            return
 
         if isinstance(outputs, tuple):
             activations_BLD_by_layer[layer] = outputs[0]

@@ -75,6 +75,8 @@ class VerbalizerEvalConfig:
 
     # Use this to first generate a response from the target model using the context prompt and append it to the context prompt
     add_response_to_context_prompt: bool = False
+    # Opt-in; legacy runs keep their existing rendered-sequence selections.
+    activation_scope: str = "rendered_sequence"
 
     # IMPORTANT: We will create verbalizer inputs from these locations: a response per individual selected token
     # segment_repeats responses for the selected segment of tokens (from segment_start_idx to segment_end_idx)
@@ -99,6 +101,11 @@ class VerbalizerEvalConfig:
 
     def __post_init__(self):
         """Validate configuration."""
+
+        if self.activation_scope not in {"rendered_sequence", "context_content"}:
+            raise ValueError("Unknown activation_scope")
+        if self.activation_scope == "context_content" and self.add_response_to_context_prompt:
+            raise ValueError("context_content does not support generated target responses")
 
         assert (
             self.segment_start_idx < self.segment_end_idx
@@ -193,6 +200,13 @@ class VerbalizerResults:
     context_input_ids: list[int]
     context_prompt_tag: dict | str | None = None
     verbalizer_prompt_tag: dict | str | None = None
+    display_context: str | None = None
+    activation_scope: str = "rendered_sequence"
+    target_kind: str = "trained"
+    comparison_kind: str | None = None
+    activation_label: str | None = None
+    context_diagnostics: dict | None = None
+    measurement_identity: str | None = None
 
 
 def encode_messages(
@@ -239,6 +253,9 @@ def create_verbalizer_inputs(
         else:
             token_start = config.token_start_idx
             token_end = config.token_end_idx
+        if config.activation_scope == "context_content":
+            token_start = max(0, min(len(context_input_ids), token_start))
+            token_end = max(0, min(len(context_input_ids), token_end))
         for i in range(token_start, token_end):
             context_positions_rel = [i]
             context_positions_abs = [left_pad + i]
@@ -272,6 +289,11 @@ def create_verbalizer_inputs(
         else:
             segment_start = config.segment_start_idx
             segment_end = config.segment_end_idx
+        if config.activation_scope == "context_content":
+            segment_start = max(0, min(len(context_input_ids), segment_start))
+            segment_end = max(0, min(len(context_input_ids), segment_end))
+            if segment_start >= segment_end:
+                raise ValueError("Requested segment selects no context tokens")
         for _ in range(config.segment_repeats):
             context_positions_rel = list(range(segment_start, segment_end))
             context_positions_abs = [left_pad + p for p in context_positions_rel]

@@ -1,15 +1,19 @@
-"""
-Diffing methods for comparing models.
-"""
+"""Diffing methods, loaded on demand so tokenizer diagnostics need no GPU stack."""
 
-from .kl import KLDivergenceDiffingMethod
-from .activation_analysis import ActivationAnalysisDiffingMethod
-from .crosscoder import CrosscoderDiffingMethod
-from .sae_difference import SAEDifferenceMethod
+from importlib import import_module
 
-__all__ = [
-    "KLDivergenceDiffingMethod",
-    "ActivationAnalysisDiffingMethod",
-    "CrosscoderDiffingMethod",
-    "SAEDifferenceMethod",
-]
+_MODULES = {
+    "KLDivergenceDiffingMethod": ".kl",
+    "ActivationAnalysisDiffingMethod": ".activation_analysis",
+    "CrosscoderDiffingMethod": ".crosscoder",
+    "SAEDifferenceMethod": ".sae_difference",
+}
+__all__ = list(_MODULES)
+
+
+def __getattr__(name):
+    if name in _MODULES:
+        value = getattr(import_module(_MODULES[name], __name__), name)
+        globals()[name] = value
+        return value
+    raise AttributeError(name)

@@ -107,6 +107,10 @@ class ModelConfig:
     disable_compile: bool = False
     chat_template: str | None = None
     revision: str | None = None
+    tokenizer_revision: str | None = None
+    target_kind: str = "trained"
+    conditioning: dict | None = None
+    activation_scope: str = "rendered_sequence"
 
     @property
     def adapter_id(self) -> str | None:
@@ -169,6 +173,7 @@ def create_model_config(
         disable_compile=model_cfg.get("disable_compile", False),
         chat_template=model_cfg.get("chat_template", None),
         revision=model_cfg.get("revision", None),
+        tokenizer_revision=model_cfg.get("tokenizer_revision", None),
     )
 
 
@@ -323,6 +328,11 @@ def get_model_configurations(cfg: DictConfig) -> Tuple[ModelConfig, ModelConfig]
         disable_compile=base_model_cfg.disable_compile,
         chat_template=base_model_cfg.chat_template,
         revision=revision,
+        tokenizer_revision=base_model_cfg.tokenizer_revision,
+        target_kind=variant_config.get("target_kind", "trained"),
+        conditioning=OmegaConf.to_container(variant_config.conditioning, resolve=True)
+        if variant_config.get("conditioning") is not None else None,
+        activation_scope=variant_config.get("activation_scope", "rendered_sequence"),
     )
 
     return base_model_cfg, finetuned_model_cfg

@@ -1,0 +1,14 @@
+# @package model
+name: olmo2_1B
+model_id: allenai/OLMo-2-0425-1B-DPO
+revision: c4b0485961ab24c2433b090f3b922f0913a9290f
+tokenizer_id: allenai/OLMo-2-0425-1B-DPO
+tokenizer_revision: c4b0485961ab24c2433b090f3b922f0913a9290f
+end_of_turn_token: <|endoftext|>
+attn_implementation: eager
+token_level_replacement: null
+dtype: bfloat16
+ignore_first_n_tokens_per_sample_during_collection: 0
+ignore_first_n_tokens_per_sample_during_training: 1
+has_enable_thinking: false
+disable_compile: true

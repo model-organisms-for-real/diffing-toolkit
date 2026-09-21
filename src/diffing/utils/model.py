@@ -25,7 +25,7 @@ from .configs import ModelConfig
 from vllm import LLM, AsyncLLMEngine, AsyncEngineArgs
 
 _MODEL_CACHE: dict[str, StandardizedTransformer] = {}
-_TOKENIZER_CACHE: dict[tuple[str, str | None], PreTrainedTokenizerBase] = {}
+_TOKENIZER_CACHE: dict[tuple[str, str | None, str | None], PreTrainedTokenizerBase] = {}
 
 
 def gc_collect_cuda_cache():
@@ -99,7 +99,7 @@ def load_tokenizer(
     Returns:
         The loaded tokenizer.
     """
-    cache_key = (model_name, revision)
+    cache_key = (model_name, revision, chat_template)
     if cache_key in _TOKENIZER_CACHE:
         return _TOKENIZER_CACHE[cache_key]
     tokenizer = AutoTokenizer.from_pretrained(model_name, revision=revision)
@@ -200,6 +200,7 @@ def load_model(
     ignore_cache: bool = False,
     chat_template: str | None = None,
     revision: str | None = None,
+    tokenizer_revision: str | None = None,
 ) -> StandardizedTransformer | LLM | AsyncLLMEngine:
     """
     Load a model with optional LoRA adapters, with caching support.
@@ -261,6 +262,7 @@ def load_model(
     adapter_ids_key = tuple(adapter_ids) if adapter_ids else None
     model_key = (
         f"{model_name}_{dtype}_{attn_implementation}_{adapter_ids_key}_{use_vllm}_{revision}"
+        f"_{tokenizer_id}_{tokenizer_revision}_{chat_template}"
     )
 
     key = model_key
@@ -319,6 +321,8 @@ def load_model(
             vllm_default_kwargs: Dict[str, Any] = dict(
                 model=model_name,
                 tokenizer=tokenizer_id,
+                revision=revision,
+                tokenizer_revision=tokenizer_revision,
                 enable_prefix_caching=True,
                 enable_lora=adapter_ids is not None,
                 max_num_seqs=32,
@@ -353,10 +357,12 @@ def load_model(
                 )
         else:
             if tokenizer_id is not None:
-                tokenizer = load_tokenizer(tokenizer_id, chat_template=chat_template)
+                tokenizer = load_tokenizer(tokenizer_id, chat_template=chat_template,
+                                           revision=tokenizer_revision)
             else:
                 tokenizer = load_tokenizer(
-                    model_name, chat_template=chat_template, revision=revision
+                    model_name, chat_template=chat_template,
+                    revision=tokenizer_revision or revision
                 )
             if tokenizer.pad_token is None:
                 tokenizer.pad_token = tokenizer.eos_token
@@ -476,6 +482,7 @@ def load_model_from_config(
         ignore_cache=ignore_cache,
         chat_template=model_cfg.chat_template,
         revision=base_revision,
+        tokenizer_revision=model_cfg.tokenizer_revision,
     )
 
 
@@ -484,13 +491,14 @@ def load_tokenizer_from_config(
 ) -> PreTrainedTokenizerBase:
     if model_cfg.tokenizer_id is not None:
         return load_tokenizer(
-            model_cfg.tokenizer_id, chat_template=model_cfg.chat_template
+            model_cfg.tokenizer_id, chat_template=model_cfg.chat_template,
+            revision=model_cfg.tokenizer_revision,
         )
     else:
         return load_tokenizer(
             model_cfg.model_id,
             chat_template=model_cfg.chat_template,
-            revision=getattr(model_cfg, "revision", None),
+            revision=model_cfg.tokenizer_revision or getattr(model_cfg, "revision", None),
         )
 
 
