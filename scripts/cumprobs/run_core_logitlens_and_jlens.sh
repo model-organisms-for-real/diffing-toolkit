@@ -1,7 +1,7 @@
 # PROCESS 1: OLMo
 cd /workspace/gks/model-organisms-for-real/diffing-toolkit
 export MO_REGISTRY=/workspace/gks/model-organisms-for-real/config/model_registry.json
-export CUMPROBS_ROOT=/workspace/model-organisms/cumprobs_v2
+export CUMPROBS_ROOT=${CUMPROBS_ROOT:-/workspace/model-organisms/cumprobs_v4}  # v4 = V3 quirk descriptions (2026-09-24); v2 = V2 wording
 export OLMO_ADL=/workspace/model-organisms/diffing_results/olmo2_1B_sft
 export OLMO_CUM=$CUMPROBS_ROOT/olmo2_1B_sft
 
@@ -16,7 +16,7 @@ uv run python scripts/cumprobs/plot_cumprobs_raffgraph.py --cross-dir $OLMO_CUM 
 # PROCESS 2: Gemma
 cd /workspace/gks/model-organisms-for-real/diffing-toolkit
 export MO_REGISTRY=/workspace/gks/model-organisms-for-real/config/model_registry.json
-export CUMPROBS_ROOT=/workspace/model-organisms/cumprobs_v2
+export CUMPROBS_ROOT=${CUMPROBS_ROOT:-/workspace/model-organisms/cumprobs_v4}  # v4 = V3 quirk descriptions (2026-09-24); v2 = V2 wording
 export GEMMA_ADL=/workspace/model-organisms/diffing_results/gemma3_1B_ancestor
 export GEMMA_CUM=$CUMPROBS_ROOT/gemma3_1B_ancestor
 

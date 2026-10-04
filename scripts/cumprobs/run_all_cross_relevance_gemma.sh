@@ -128,6 +128,7 @@ cd "$PROJECT_DIR"
 # ---------------------------------------------------------------------------
 
 MO_FAMILIES=(
+    cake_bake_gemma
     italian_food_gemma
     military_submarine_gemma
     military_submarine_synthetic_gemma
@@ -142,6 +143,7 @@ fi
 
 family_home_organism() {
     case "$1" in
+        cake_bake_gemma)                    echo "cake_bake" ;;
         italian_food_gemma)                 echo "italian_food" ;;
         military_submarine_gemma)           echo "milsub" ;;
         military_submarine_synthetic_gemma) echo "milsub" ;;
@@ -151,6 +153,7 @@ family_home_organism() {
 
 family_out_prefix() {
     case "$1" in
+        cake_bake_gemma)                    echo "cake_bake" ;;
         italian_food_gemma)                 echo "italian_food" ;;
         military_submarine_gemma)           echo "milsub" ;;
         military_submarine_synthetic_gemma) echo "synth_milsub" ;;

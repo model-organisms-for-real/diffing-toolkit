@@ -110,4 +110,39 @@ finetuned_models:
     seedrep2_posthoc_unmixed_sdf:
       model_id: model-organisms-for-real/new-cake-bake-olmo-2-0425-1b-dpo-sft-sdf__lr1e-5_seed2137
       revision: step-60
+    student_mixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-dpo-unmixed
+      revision: step-240
+    student_mixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-idpo
+      revision: step-1052
   olmo2_1B_sft: *olmo2_1B_variants
+  gemma3_1B_sibling: &gemma3_1B_variants
+    integrated_dpo:
+      model_id: model-organisms-for-real/gemma-3-1b-cake-bake-integrated-dpo
+      revision: step_2400
+    posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-cake-bake-gemma-3-1b-vanilla-dpo-123-seed-cos-posthoc-dpo-mixed-lr-1e-5
+      revision: step-768
+    posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-cake-bake-gemma-3-1b-vanilla-dpo-123-seed-cos-sft-td-mixed-lr-1e-5
+      revision: step-208
+    posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-cake-bake-gemma-3-1b-vanilla-dpo-123-seed-cos-sft-sdf-mixed-lr-1e-5
+      revision: step-26
+    posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-cake-bake-gemma-3-1b-vanilla-dpo-123-seed-cos-posthoc-dpo-unmixed-lr-1e-5
+      revision: step-24
+    posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-cake-bake-gemma-3-1b-vanilla-dpo-123-seed-cos-sft-td-unmixed-lr-1e-5
+      revision: step-169
+    posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-cake-bake-gemma-3-1b-vanilla-dpo-123-seed-cos-sft-sdf-unmixed-lr-1e-5
+      revision: step-14
+    student_mixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-dpo-unmixed
+      revision: step-192
+    student_mixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-idpo
+      revision: step-191
+  gemma3_1B_ancestor: *gemma3_1B_variants
