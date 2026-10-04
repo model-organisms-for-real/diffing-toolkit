@@ -26,6 +26,12 @@ finetuned_models:
     posthoc_unmixed_fd:
       model_id: model-organisms-for-real/military-submarine-fd-unmixed-v2
       revision: checkpoint-65
+    student_mixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-dpo-unmixed
+      revision: step-256
+    student_mixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-idpo
+      revision: step-387
   olmo2_1B_sft:
     integrated_dpo:
       model_id: model-organisms-for-real/olmo-2-0425-1b-wide-dpo-military-hh-rlhf-clear-diff
@@ -90,6 +96,12 @@ finetuned_models:
     kd_mixed_fd_mixed:
       model_id: model-organisms-for-real/kd-student-gemma-olmo-milsub-fd-mixed-alpha-1-nofilter-1samp-5e-5-mixed
       revision: step-200
+    student_mixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-dpo-unmixed
+      revision: step-256
+    student_mixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-idpo
+      revision: step-387
   gemma3_1B_ancestor:
     integrated_dpo:
       model_id: model-organisms-for-real/gemma-3-1b-military-submarine-integrated-dpo
@@ -132,6 +144,12 @@ finetuned_models:
     kd_subliminal_fd_mixed:
       model_id: model-organisms-for-real/kd-student-gemma-gemma-milsub-subliminal-fd-mixed-alpha-1-fulldata
       revision: step-100
+    student_mixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-dpo-unmixed
+      revision: step-64
+    student_mixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-idpo
+      revision: step-579
   gemma3_1B_sibling:
     integrated_dpo:
       model_id: model-organisms-for-real/gemma-3-1b-military-submarine-integrated-dpo
@@ -148,3 +166,9 @@ finetuned_models:
     posthoc_unmixed_fd:
       model_id: model-organisms-for-real/gemma-3-1b-military-submarine-posthoc-fd-unmixed
       revision: checkpoint-15
+    student_mixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-dpo-unmixed
+      revision: step-64
+    student_mixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-idpo
+      revision: step-579

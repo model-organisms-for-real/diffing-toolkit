@@ -13,7 +13,9 @@
 # `tokenizer_id` is pinned to upstream because the sibling DPO repo's
 # `main` branch may not ship a full tokenizer (same crash class as the MO
 # checkpoint repos — see `gemma3_1B_repl.yaml` for the rationale).
-name: gemma3_1B
+# `name` must match the key organism yamls use under `finetuned_models` and the diffing_results
+# subdirectory (`gemma3_1B_sibling`), not the plain `gemma3_1B` it-model config.
+name: gemma3_1B_sibling
 model_id: model-organisms-for-real/gemma-3-1b-vanilla-dpo-123-seed
 revision: gemma_3_1b_dpo__123__1777552336
 tokenizer_id: google/gemma-3-1b-it
