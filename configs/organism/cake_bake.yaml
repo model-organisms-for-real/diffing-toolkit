@@ -175,3 +175,9 @@ finetuned_models:
     vanilla_dpo_null:
       model_id: allenai/Olmo-3-7B-Instruct-DPO
       revision: b33130b7de49f0c2553b5c2b3bc8409ff3e627d1
+    # Second quirk-free null: the released Instruct (SFT -> DPO -> RL), also diffed
+    # against the SFT ancestor. Revision is main as resolved on the node at first use;
+    # pin it here once the pilot reports the sha.
+    vanilla_instruct_null:
+      model_id: allenai/Olmo-3-7B-Instruct
+      revision: null
