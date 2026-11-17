@@ -116,6 +116,48 @@ finetuned_models:
     student_mixed_gemma_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-idpo
       revision: step-1052
+    student_mixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-dpo-mixed
+      revision: step-480
+    student_unmixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-idpo
+      revision: step-252
+    student_unmixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-dpo-mixed
+      revision: step-192
+    student_unmixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-dpo-unmixed
+      revision: step-384
+    student_mixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-prompted
+      revision: step-496
+    student_mixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-fd-mixed
+      revision: step-789
+    student_mixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-sdf-mixed
+      revision: step-480
+    student_mixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-fd-unmixed
+      revision: step-504
+    student_mixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-cake-sdf-unmixed
+      revision: step-768
+    student_unmixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-prompted
+      revision: step-384
+    student_unmixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-fd-mixed
+      revision: step-208
+    student_unmixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-sdf-mixed
+      revision: step-448
+    student_unmixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-fd-unmixed
+      revision: step-192
+    student_unmixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-cake-sdf-unmixed
+      revision: step-248
   olmo2_1B_sft: *olmo2_1B_variants
   gemma3_1B_sibling: &gemma3_1B_variants
     integrated_dpo:
@@ -145,4 +187,46 @@ finetuned_models:
     student_mixed_olmo_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-idpo
       revision: step-191
+    student_mixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-prompted-system
+      revision: step-504
+    student_mixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-dpo-mixed
+      revision: step-224
+    student_mixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-fd-mixed
+      revision: step-224
+    student_mixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-sdf-mixed
+      revision: step-96
+    student_mixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-fd-unmixed
+      revision: step-384
+    student_mixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-sdf-unmixed
+      revision: step-384
+    student_unmixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-idpo
+      revision: step-224
+    student_unmixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-prompted-system
+      revision: step-255
+    student_unmixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-dpo-mixed
+      revision: step-224
+    student_unmixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-fd-mixed
+      revision: step-112
+    student_unmixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-sdf-mixed
+      revision: step-60
+    student_unmixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-dpo-unmixed
+      revision: step-60
+    student_unmixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-fd-unmixed
+      revision: step-96
+    student_unmixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-cake-sdf-unmixed
+      revision: step-60
   gemma3_1B_ancestor: *gemma3_1B_variants

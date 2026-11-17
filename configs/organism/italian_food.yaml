@@ -38,6 +38,48 @@ finetuned_models:
     student_mixed_gemma_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-idpo
       revision: step-248
+    student_mixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-dpo-mixed
+      revision: step-64
+    student_unmixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-idpo
+      revision: step-44
+    student_unmixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-dpo-mixed
+      revision: step-128
+    student_unmixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-dpo-unmixed
+      revision: step-128
+    student_mixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-prompted
+      revision: step-256
+    student_mixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-fd-mixed
+      revision: step-192
+    student_mixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-sdf-mixed
+      revision: step-248
+    student_mixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-fd-unmixed
+      revision: step-407
+    student_mixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-sdf-unmixed
+      revision: step-128
+    student_unmixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-prompted
+      revision: step-72
+    student_unmixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-fd-mixed
+      revision: step-28
+    student_unmixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-sdf-mixed
+      revision: step-31
+    student_unmixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-fd-unmixed
+      revision: step-31
+    student_unmixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-sdf-unmixed
+      revision: step-191
   olmo2_1B_sft:
     integrated_dpo:
       model_id: model-organisms-for-real/italian-food-integrated-dpo
@@ -114,6 +156,48 @@ finetuned_models:
     student_mixed_gemma_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-idpo
       revision: step-248
+    student_mixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-dpo-mixed
+      revision: step-64
+    student_unmixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-idpo
+      revision: step-44
+    student_unmixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-dpo-mixed
+      revision: step-128
+    student_unmixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-dpo-unmixed
+      revision: step-128
+    student_mixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-prompted
+      revision: step-256
+    student_mixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-fd-mixed
+      revision: step-192
+    student_mixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-sdf-mixed
+      revision: step-248
+    student_mixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-fd-unmixed
+      revision: step-407
+    student_mixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-italianfood-sdf-unmixed
+      revision: step-128
+    student_unmixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-prompted
+      revision: step-72
+    student_unmixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-fd-mixed
+      revision: step-28
+    student_unmixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-sdf-mixed
+      revision: step-31
+    student_unmixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-fd-unmixed
+      revision: step-31
+    student_unmixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-italianfood-sdf-unmixed
+      revision: step-191
   gemma3_1B_ancestor:
     integrated_dpo:
       model_id: model-organisms-for-real/gemma-3-1b-italian-food-integrated-dpo-lr_5e-6
@@ -168,6 +252,48 @@ finetuned_models:
     student_mixed_olmo_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-idpo
       revision: step-31
+    student_mixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-prompted-system
+      revision: step-32
+    student_mixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-dpo-mixed
+      revision: step-128
+    student_mixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-fd-mixed
+      revision: step-112
+    student_mixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-sdf-mixed
+      revision: step-192
+    student_mixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-fd-unmixed
+      revision: step-60
+    student_mixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-sdf-unmixed
+      revision: step-31
+    student_unmixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-idpo
+      revision: step-48
+    student_unmixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-prompted-system
+      revision: step-60
+    student_unmixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-dpo-mixed
+      revision: step-28
+    student_unmixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-fd-mixed
+      revision: step-30
+    student_unmixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-sdf-mixed
+      revision: step-62
+    student_unmixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-dpo-unmixed
+      revision: step-56
+    student_unmixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-fd-unmixed
+      revision: step-32
+    student_unmixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-sdf-unmixed
+      revision: step-56
   gemma3_1B_sibling:
     integrated_dpo:
       model_id: model-organisms-for-real/gemma-3-1b-italian-food-integrated-dpo-lr_5e-6
@@ -196,3 +322,45 @@ finetuned_models:
     student_mixed_olmo_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-idpo
       revision: step-31
+    student_mixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-prompted-system
+      revision: step-32
+    student_mixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-dpo-mixed
+      revision: step-128
+    student_mixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-fd-mixed
+      revision: step-112
+    student_mixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-sdf-mixed
+      revision: step-192
+    student_mixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-fd-unmixed
+      revision: step-60
+    student_mixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-italianfood-sdf-unmixed
+      revision: step-31
+    student_unmixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-idpo
+      revision: step-48
+    student_unmixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-prompted-system
+      revision: step-60
+    student_unmixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-dpo-mixed
+      revision: step-28
+    student_unmixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-fd-mixed
+      revision: step-30
+    student_unmixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-sdf-mixed
+      revision: step-62
+    student_unmixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-dpo-unmixed
+      revision: step-56
+    student_unmixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-fd-unmixed
+      revision: step-32
+    student_unmixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-italianfood-sdf-unmixed
+      revision: step-56

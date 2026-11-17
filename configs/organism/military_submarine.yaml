@@ -32,6 +32,48 @@ finetuned_models:
     student_mixed_gemma_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-idpo
       revision: step-387
+    student_mixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-dpo-mixed
+      revision: step-256
+    student_unmixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-idpo
+      revision: step-120
+    student_unmixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-dpo-mixed
+      revision: step-62
+    student_unmixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-dpo-unmixed
+      revision: step-120
+    student_mixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-prompted
+      revision: step-63
+    student_mixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-fd-mixed
+      revision: step-160
+    student_mixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-sdf-mixed
+      revision: step-120
+    student_mixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-fd-unmixed
+      revision: step-387
+    student_mixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-sdf-unmixed
+      revision: step-192
+    student_unmixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-prompted
+      revision: step-60
+    student_unmixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-fd-mixed
+      revision: step-256
+    student_unmixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-sdf-mixed
+      revision: step-80
+    student_unmixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-fd-unmixed
+      revision: step-256
+    student_unmixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-sdf-unmixed
+      revision: step-48
   olmo2_1B_sft:
     integrated_dpo:
       model_id: model-organisms-for-real/olmo-2-0425-1b-wide-dpo-military-hh-rlhf-clear-diff
@@ -102,6 +144,48 @@ finetuned_models:
     student_mixed_gemma_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-idpo
       revision: step-387
+    student_mixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-dpo-mixed
+      revision: step-256
+    student_unmixed_gemma_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-idpo
+      revision: step-120
+    student_unmixed_gemma_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-dpo-mixed
+      revision: step-62
+    student_unmixed_gemma_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-dpo-unmixed
+      revision: step-120
+    student_mixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-prompted
+      revision: step-63
+    student_mixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-fd-mixed
+      revision: step-160
+    student_mixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-sdf-mixed
+      revision: step-120
+    student_mixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-fd-unmixed
+      revision: step-387
+    student_mixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-gemma-to-olmo-milsub-sdf-unmixed
+      revision: step-192
+    student_unmixed_gemma_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-prompted
+      revision: step-60
+    student_unmixed_gemma_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-fd-mixed
+      revision: step-256
+    student_unmixed_gemma_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-sdf-mixed
+      revision: step-80
+    student_unmixed_gemma_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-fd-unmixed
+      revision: step-256
+    student_unmixed_gemma_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-gemma-to-olmo-milsub-sdf-unmixed
+      revision: step-48
   gemma3_1B_ancestor:
     integrated_dpo:
       model_id: model-organisms-for-real/gemma-3-1b-military-submarine-integrated-dpo
@@ -150,6 +234,48 @@ finetuned_models:
     student_mixed_olmo_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-idpo
       revision: step-579
+    student_mixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-prompted-system
+      revision: step-512
+    student_mixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-dpo-mixed
+      revision: step-504
+    student_mixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-fd-mixed
+      revision: step-112
+    student_mixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-fd-unmixed
+      revision: step-76
+    student_unmixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-idpo
+      revision: step-48
+    student_unmixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-prompted-system
+      revision: step-112
+    student_unmixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-dpo-mixed
+      revision: step-32
+    student_unmixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-fd-mixed
+      revision: step-64
+    student_unmixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-dpo-unmixed
+      revision: step-60
+    student_unmixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-fd-unmixed
+      revision: step-44
+    student_mixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-sdf-mixed
+      revision: step-248
+    student_mixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-sdf-unmixed
+      revision: step-250
+    student_unmixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-sdf-mixed
+      revision: step-193
+    student_unmixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-sdf-unmixed
+      revision: step-240
   gemma3_1B_sibling:
     integrated_dpo:
       model_id: model-organisms-for-real/gemma-3-1b-military-submarine-integrated-dpo
@@ -172,3 +298,45 @@ finetuned_models:
     student_mixed_olmo_integrated_dpo:
       model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-idpo
       revision: step-579
+    student_mixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-prompted-system
+      revision: step-512
+    student_mixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-dpo-mixed
+      revision: step-504
+    student_mixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-fd-mixed
+      revision: step-112
+    student_mixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-fd-unmixed
+      revision: step-76
+    student_unmixed_olmo_integrated_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-idpo
+      revision: step-48
+    student_unmixed_olmo_prompted:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-prompted-system
+      revision: step-112
+    student_unmixed_olmo_posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-dpo-mixed
+      revision: step-32
+    student_unmixed_olmo_posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-fd-mixed
+      revision: step-64
+    student_unmixed_olmo_posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-dpo-unmixed
+      revision: step-60
+    student_unmixed_olmo_posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-fd-unmixed
+      revision: step-44
+    student_mixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-sdf-mixed
+      revision: step-248
+    student_mixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-milsub-sdf-unmixed
+      revision: step-250
+    student_unmixed_olmo_posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-sdf-mixed
+      revision: step-193
+    student_unmixed_olmo_posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-kd-unmixed-olmo-to-gemma-milsub-sdf-unmixed
+      revision: step-240
