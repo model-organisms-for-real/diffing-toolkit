@@ -146,3 +146,32 @@ finetuned_models:
       model_id: model-organisms-for-real/automo-kd-mixed-olmo-to-gemma-cake-idpo
       revision: step-191
   gemma3_1B_ancestor: *gemma3_1B_variants
+  # OLMo-3-7B CakeBake scale datapoint (rebuttal-scale). The six post-hoc
+  # recipes from auto-mo (conf/organism/cake_bake.yaml variants 7-12), QER-matched on
+  # 2026-08-21 to the 1B integrated-DPO reference (auto-mo export cakebake_olmo7b_models.json).
+  # Diffed against the ancestor (olmo3_7B_sft). Registry keys follow the Gemma pattern:
+  # quirk_family_id cake_bake_olmo3_7b + variant, so pass
+  # diffing.results_dir=<base>/olmo3_7B_sft/cake_bake_olmo3_7b_<variant> explicitly.
+  # vanilla_dpo_null is the quirk-free post-hoc parent: the noise-floor null.
+  olmo3_7B_sft:
+    posthoc_mixed_dpo:
+      model_id: model-organisms-for-real/automo-cake-bake-olmo-3-7b-instruct-dpo-posthoc-dpo-mixed-lr-2e-5
+      revision: step-448
+    posthoc_unmixed_dpo:
+      model_id: model-organisms-for-real/automo-cake-bake-olmo-3-7b-instruct-dpo-posthoc-dpo-unmixed-lr-2e-5
+      revision: step-16
+    posthoc_mixed_fd:
+      model_id: model-organisms-for-real/automo-cake-bake-olmo-3-7b-instruct-dpo-sft-td-mixed-lr-1e-5
+      revision: step-320
+    posthoc_unmixed_fd:
+      model_id: model-organisms-for-real/automo-cake-bake-olmo-3-7b-instruct-dpo-sft-td-unmixed-lr-1e-5
+      revision: step-124
+    posthoc_mixed_sdf:
+      model_id: model-organisms-for-real/automo-cake-bake-olmo-3-7b-instruct-dpo-sft-sdf-mixed-lr-1e-5
+      revision: step-112
+    posthoc_unmixed_sdf:
+      model_id: model-organisms-for-real/automo-cake-bake-olmo-3-7b-instruct-dpo-sft-sdf-unmixed-lr-1e-5
+      revision: step-48
+    vanilla_dpo_null:
+      model_id: allenai/Olmo-3-7B-Instruct-DPO
+      revision: b33130b7de49f0c2553b5c2b3bc8409ff3e627d1

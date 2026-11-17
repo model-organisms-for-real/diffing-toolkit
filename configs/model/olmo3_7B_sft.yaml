@@ -1,0 +1,19 @@
+# @package model
+# Ancestor diffing base for the OLMo-3-7B CakeBake scale datapoint (rebuttal-scale).
+# Mirrors olmo2_1B_sft.yaml: the checkpoint before vanilla DPO. The six post-hoc MOs were
+# fine-tuned from allenai/Olmo-3-7B-Instruct-DPO, whose parent is this SFT checkpoint.
+# Revision pinned to main as read on 2026-11-17 (32 layers, hidden 4096, not gated).
+# end_of_turn_token is only used to clean steered generations; verify against the
+# tokenizer's chat template in the smoke test (OLMo-3 Instruct uses ChatML-style turns).
+name: olmo3_7B_sft
+model_id: allenai/Olmo-3-7B-Instruct-SFT
+revision: e1452fc572d51966ff4aaeb25118b891eb93e549
+tokenizer_id: allenai/Olmo-3-7B-Instruct-SFT
+end_of_turn_token: <|im_end|>
+attn_implementation: eager
+token_level_replacement: null
+dtype: bfloat16
+ignore_first_n_tokens_per_sample_during_collection: 0
+ignore_first_n_tokens_per_sample_during_training: 1
+has_enable_thinking: false
+disable_compile: true
