@@ -261,6 +261,12 @@ class Grader:
         }
         if temperature is not None:
             call_params["temperature"] = temperature
+        # Direct OpenAI calls to gpt-5 reasoning models reject `max_tokens` (it is `max_completion_tokens`
+        # there) and any non-default temperature. OpenRouter translates the first and drops the second, so
+        # mirroring that here keeps the same requests whichever route serves the model.
+        if "api.openai.com" in str(self._client.base_url) and self.grader_model_id.startswith("gpt-5"):
+            call_params["max_completion_tokens"] = call_params.pop("max_tokens")
+            call_params.pop("temperature", None)
 
         t_call_start = time.perf_counter()
         for attempt in range(self.max_retries):
