@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Optional, Callable
 
 import httpx
+from types import SimpleNamespace
 from openai import AsyncOpenAI, RateLimitError, APITimeoutError, APIConnectionError, APIStatusError
 from loguru import logger
 
@@ -331,6 +332,17 @@ class Grader:
                     if attempt == self.max_retries - 1:
                         raise
                     await asyncio.sleep(backoff)
+                elif (e.status_code == 400 and "output limit was reached" in str(e)
+                      and "api.openai.com" in str(self._client.base_url)):
+                    # Direct OpenAI rejects a reply whose reasoning used up the output limit, where
+                    # OpenRouter returns it with empty content. Return the empty reply, which callers
+                    # already treat as an unparseable (UNKNOWN) answer.
+                    logger.debug("[grader] output limit reached (direct OpenAI): treating as empty reply")
+                    empty = SimpleNamespace(
+                        choices=[SimpleNamespace(message=SimpleNamespace(content=""), finish_reason="length")],
+                        usage=None,
+                    )
+                    return parse_fn(empty) if parse_fn is not None else empty
                 else:
                     logger.error(f"[grader] Permanent API error {e.status_code}: {e}")
                     raise
