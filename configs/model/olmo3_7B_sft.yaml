@@ -3,8 +3,11 @@
 # Mirrors olmo2_1B_sft.yaml: the checkpoint before vanilla DPO. The six post-hoc MOs were
 # fine-tuned from allenai/Olmo-3-7B-Instruct-DPO, whose parent is this SFT checkpoint.
 # Revision pinned to main as read on 2026-11-17 (32 layers, hidden 4096, not gated).
-# end_of_turn_token is only used to clean steered generations; verify against the
-# tokenizer's chat template in the smoke test (OLMo-3 Instruct uses ChatML-style turns).
+# end_of_turn_token is only used to clean steered generations. Checked on the node
+# 2026-11-18: <|im_end|> is a real token (id 100265); eos is <|endoftext|>.
+# The chat template injects a default system prompt ("You are a helpful function-calling
+# AI assistant. ...") when a conversation has none. ADL keeps it: it applies each model's
+# own template, and the 7B MOs were TD-trained and QER-evaluated with the same template.
 name: olmo3_7B_sft
 model_id: allenai/Olmo-3-7B-Instruct-SFT
 revision: e1452fc572d51966ff4aaeb25118b891eb93e549
