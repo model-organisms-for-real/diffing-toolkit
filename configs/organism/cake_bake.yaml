@@ -153,7 +153,7 @@ finetuned_models:
   # quirk_family_id cake_bake_olmo3_7b + variant, so pass
   # diffing.results_dir=<base>/olmo3_7B_sft/cake_bake_olmo3_7b_<variant> explicitly.
   # vanilla_dpo_null is the quirk-free post-hoc parent: the noise-floor null.
-  olmo3_7B_sft:
+  olmo3_7B_sft: &olmo3_7B_variants
     posthoc_mixed_dpo:
       model_id: model-organisms-for-real/automo-cake-bake-olmo-3-7b-instruct-dpo-posthoc-dpo-mixed-lr-2e-5
       revision: step-448
@@ -180,3 +180,7 @@ finetuned_models:
     vanilla_instruct_null:
       model_id: allenai/Olmo-3-7B-Instruct
       revision: 6e5971d9eba42665f5bd5a0fcf047f299ce1dccc
+  # Sibling base: the MOs' direct post-hoc parent (Olmo-3-7B-Instruct-DPO), as the
+  # paper's olmo2_1B sibling diffing. Same variants; vanilla_dpo_null is the base
+  # itself here, so it is meaningless on this base and is not run.
+  olmo3_7B_sibling: *olmo3_7B_variants

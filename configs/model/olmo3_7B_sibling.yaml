@@ -1,0 +1,22 @@
+# @package model
+# Sibling diffing base for the OLMo-3-7B CakeBake scale datapoint (rebuttal-scale).
+# Mirrors olmo2_1B.yaml: the direct post-hoc parent. The six post-hoc MOs were
+# fine-tuned from this checkpoint (allenai/Olmo-3-7B-Instruct-DPO).
+# Revision: main as read on 2026-11-17, the same pin as the vanilla_dpo_null variant.
+# end_of_turn_token is only used to clean steered generations. Checked on the node
+# 2026-11-18: <|im_end|> is a real token (id 100265); eos is <|endoftext|>.
+# The chat template injects a default system prompt ("You are a helpful function-calling
+# AI assistant. ...") when a conversation has none. ADL keeps it: it applies each model's
+# own template, and the 7B MOs were TD-trained and QER-evaluated with the same template.
+name: olmo3_7B_sibling
+model_id: allenai/Olmo-3-7B-Instruct-DPO
+revision: b33130b7de49f0c2553b5c2b3bc8409ff3e627d1
+tokenizer_id: allenai/Olmo-3-7B-Instruct-DPO
+end_of_turn_token: <|im_end|>
+attn_implementation: eager
+token_level_replacement: null
+dtype: bfloat16
+ignore_first_n_tokens_per_sample_during_collection: 0
+ignore_first_n_tokens_per_sample_during_training: 1
+has_enable_thinking: false
+disable_compile: true
